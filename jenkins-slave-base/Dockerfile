@@ -8,20 +8,15 @@ RUN apt-get update &&\
     apt-get clean -y && rm -rf /var/lib/apt/lists/* &&\
     sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd &&\
     mkdir -p /var/run/sshd
-
-# Install SCM tools
-RUN apt-get update &&\
-    apt-get install -y git subversion maven &&\
-    apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
-# Install JDK 7,8 (latest edition)
-RUN apt-get update &&\
-    apt-get install -y openjdk-7-jdk openjdk-8-jdk &&\
-    apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
+    
 # Set user jenkins to the image
 RUN adduser --quiet jenkins &&\
     echo "jenkins:jenkins" | chpasswd
+
+# Install SCM and build tools
+RUN apt-get update &&\
+    apt-get install -y git subversion maven &&\
+    apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Standard SSH port
 EXPOSE 22
