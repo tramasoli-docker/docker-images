@@ -1,5 +1,5 @@
 # This Dockerfile is used to build an image containing basic stuff to be used as a Jenkins slave build node.
-FROM ubuntu:trusty
+FROM ubuntu:15.10
 MAINTAINER Fábio Tramasoli <fabio@tramasoli.com>
 
 # Install and configure a basic SSH server
