@@ -10,7 +10,7 @@ RUN apt-get update &&\
     mkdir -p /var/run/sshd
     
 # Set user jenkins to the image
-RUN adduser --quiet jenkins &&\
+RUN adduser --quiet jenkins --home 	/var/jenkins_home &&\
     echo "jenkins:jenkins" | chpasswd
 
 # Install SCM and build tools

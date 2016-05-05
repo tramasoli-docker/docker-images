@@ -20,7 +20,7 @@ RUN apt-get update &&\
     apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Set user jenkins to the image
-RUN adduser --quiet jenkins &&\
+RUN adduser --quiet jenkins --home 	/var/jenkins_home &&\
     echo "jenkins:jenkins" | chpasswd
 
 # Standard SSH port
