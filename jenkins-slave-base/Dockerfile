@@ -18,10 +18,10 @@ RUN apt-get update &&\
     apt-get install -y git subversion maven &&\
     apt-get clean -y && rm -rf /var/lib/apt/lists/*
     
-RUN echo -e '#!/bin/bash\nmkdir -p /var/jenkins_home/.subversion\nif [ ! -z "$http_proxy" ]; then\n\techo -e "[global]\\nhttp-proxy-host = ${http_proxy%:*}\\nhttp-proxy-port = ${http_proxy##*:}\\n"\nfi\n/usr/sbin/sshd -D' > /startup.sh &&
-    chmod +x /startup.sh
+RUN echo -e "mkdir -p /var/jenkins_home/.subversion\nif [ ! -z \"\$http_proxy\" ]; then\n\techo -e \"[global]\\nhttp-proxy-host = \${http_proxy%:*}\\nhttp-proxy-port = \${http_proxy##*:}\\n\"\nfi\n" > /bootstrap.sh &&
+    echo -e "/usr/sbin/sshd -D" >> /bootstrap.sh
 
 # Standard SSH port
 EXPOSE 22
 
-CMD ["/startup.sh"]
+CMD ["/bin/bash","/bootstrap.sh"]
