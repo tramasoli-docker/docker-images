@@ -10,4 +10,4 @@ RUN apt-get update &&\
 # Standard SSH port
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/startup.sh"]
