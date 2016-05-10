@@ -10,4 +10,4 @@ RUN apt-get update &&\
 # Standard SSH port
 EXPOSE 22
 
-CMD ["/startup.sh"]
+CMD ["/bin/bash","/bootstrap.sh"]
