@@ -11,7 +11,7 @@ RUN apt-get update &&\
 
 # Install SCM tools
 RUN apt-get update &&\
-    apt-get install -y git subversion maven &&\
+    apt-get install -y git subversion maven libxml2-utils &&\
     apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Install JDK 7,8 (latest edition)
